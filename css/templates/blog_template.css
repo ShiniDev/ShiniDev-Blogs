@@ -1,0 +1,121 @@
+:root {
+	box-sizing: border-box;
+	font-size: calc(0.5em + 1vmin + 0.75vmax);
+}
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	color: var(--page-font-color);
+	background-color: var(--page-background-color);
+	margin: 0;
+	padding: 0;
+}
+
+div.body {
+	min-height: 100vh;
+	padding: 2em 3em;
+}
+
+div.content {
+	flex: 2;
+}
+
+aside.flex-container {
+	flex: 1;
+}
+
+*,
+::before,
+::after {
+	box-sizing: inherit;
+}
+
+.shinidev-image {
+	border-radius: 50%;
+	width: 3.4rem;
+	height: 3.4rem;
+}
+
+header.flex-container {
+	align-items: center;
+	margin-bottom: 0.5em;
+}
+
+header.flex-container > div.flex-container {
+	flex-flow: column nowrap;
+	margin-left: 1.5em;
+}
+header.flex-container > div.flex-container i {
+	font-size: 0.6rem;
+}
+header.flex-container > div.flex-container b {
+	font-size: 0.9rem;
+}
+
+nav.flex-container {
+	justify-content: center;
+	text-decoration: none;
+}
+
+.navbar {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	font-size: 0.7rem;
+}
+
+@media (max-width: 800px) {
+	.navbar {
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	.navbar > a {
+		margin-top: 0.5em;
+	}
+	.navbar > a > li {
+		border-bottom-left-radius: 1em;
+		border-bottom-right-radius: 1em;
+		padding-bottom: 0.5em;
+	}
+}
+
+.navbar li {
+	background-color: var(--header-button-background-color);
+	border-top-right-radius: 1em;
+	border-top-left-radius: 1em;
+	padding: 0.5em 1em 0 1em;
+	transition: background-color 0.2s ease-out;
+}
+
+.navbar > a + a {
+	margin-left: 0.75em;
+}
+
+.navbar a {
+	text-decoration: none;
+	color: var(--header-font-color);
+}
+
+.navbar li:hover {
+	background-color: var(--header-button-hover-background-color);
+}
+
+.flex-container {
+	display: flex;
+}
+
+.header {
+	padding: 0.5em 1em 0em 1em;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	background-color: var(--header-background-color);
+	color: var(--header-font-color);
+	min-height: 20vh;
+}
+
+footer {
+	text-align: center;
+	font-size: 0.75rem;
+	padding: 1.5em 0 0.5em 0;
+}

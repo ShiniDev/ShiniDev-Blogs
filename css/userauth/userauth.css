@@ -1,0 +1,134 @@
+:root {
+	box-sizing: border-box;
+	font-size: calc(0.5em + 1vmin + 0.75vmax);
+}
+
+*,
+::after,
+::before {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body * + * {
+	margin-top: 1.5em;
+}
+
+body > div.flex-center {
+	min-height: 100vh;
+	min-width: 100vw;
+}
+
+.flex-container {
+	display: flex;
+}
+
+.error-container {
+	flex-flow: column wrap;
+	margin-top: 0.75em;
+	padding: 0.5em 0;
+	border: 2px solid #ffaaaa;
+	background-color: #ffd8d8;
+	color: darkred;
+}
+
+.error-msg {
+	text-align: center;
+	font-size: 0.5rem;
+}
+
+.error-container * {
+	margin: 0;
+}
+
+.error-container > .close-button {
+	margin-left: auto;
+	font-size: 0.6rem;
+}
+
+.flex-center {
+	justify-content: center;
+	align-items: center;
+}
+
+.login-form {
+	display: flex;
+	flex-flow: column nowrap;
+	border-radius: 1em;
+	border: 2px solid lightgray;
+	padding: 0.5em 3em 2em 3em;
+	margin-bottom: 2em;
+}
+
+.checkbox-container {
+	align-items: center;
+	margin-top: 0.5em;
+}
+
+.register {
+	text-decoration: none;
+	color: var(--header-background-color);
+	font-size: 0.65rem;
+	margin-right: 1em;
+	transition: color 0.2s ease-out;
+}
+
+.register:hover {
+	color: var(--header-button-hover-background-color);
+}
+
+.login {
+	text-decoration: none;
+	color: var(--header-background-color);
+	font-size: 0.65rem;
+	margin-right: 1em;
+	transition: color 0.2s ease-out;
+}
+
+.login:hover {
+	color: var(--header-button-hover-background-color);
+}
+
+.copyright {
+	margin: 0;
+	margin-left: 1em;
+	font-size: 0.65rem;
+}
+
+.checkbox-container > p {
+	margin: 0;
+	margin-left: 0.5em;
+	font-size: 0.6rem;
+}
+
+.login-form > label {
+	font-size: 0.6rem;
+}
+
+.login-form > input {
+	margin-top: 0;
+}
+
+.login-form > h3 {
+	text-align: center;
+	font-weight: bold;
+}
+
+input[type="submit"] {
+	background-color: var(--header-background-color);
+	color: var(--header-font-color);
+	margin-top: 1em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	border-radius: 1em;
+	cursor: pointer;
+	transition: background-color 0.3s ease-out;
+}
+
+input[type="submit"]:hover {
+	background-color: var(--header-button-hover-background-color);
+}

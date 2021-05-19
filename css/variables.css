@@ -1,0 +1,10 @@
+:root {
+	--page-background-color: #fff;
+	--header-background-color: #241571;
+	--header-button-background-color: #1f456e;
+	--header-button-hover-background-color: #52b2bf;
+	/* --footer-background-color: #82eefd; */
+	--page-font-color: #000;
+	--header-font-color: #fff;
+	/* --footer-font-color: #999; */
+}
