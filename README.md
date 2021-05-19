@@ -13,3 +13,9 @@ Planned Features<ol>
 Plans<ol>
   <li>Remove register feature, as this is a blog site</li>
 </ol>
+
+<h2>Preview</h2>
+<img src="assets/previews/Homepage.png" width="300" height="300" alt="Homepage">
+<img src="assets/previews/Mobilehomepage.png" width="300" height="300" alt="MobileHomepage">
+<img src="assets/previews/Loginpage.png" width="300" height="300" alt="Login">
+<img src="assets/previews/Register.png" width="300" height="300" alt="Register">
