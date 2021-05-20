@@ -11,6 +11,7 @@ class Blog extends CI_Controller
     public function index()
     {
         $data['content']['text'] = '';
+        $data['current_tag'] = 'home';
         $data['title'] = 'Blog Article';
         $this->load->view('templates/blog_template', $data);
     }
@@ -18,6 +19,7 @@ class Blog extends CI_Controller
     public function article($tags = "")
     {
         $data['content']['text'] = '';
+        $data['current_tag'] = $tags;
         $data['title'] = 'Blog Article';
         $this->load->view('templates/blog_template', $data);
     }
@@ -25,6 +27,7 @@ class Blog extends CI_Controller
     public function about()
     {
         $data['content']['text'] = '';
+        $data['current_tag'] = 'about';
         $data['title'] = 'About Me';
         $this->load->view('templates/blog_template', $data);
     }

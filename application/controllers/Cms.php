@@ -9,8 +9,16 @@ class Cms extends CI_Controller
     }
     public function index()
     {
-        if (!(isset($_SESSION['user']) && isset($_SESSION['loggedin']))) {
-            redirect(base_url('userauth'));
-        }
+        redirect_not_login('userauth');
+        $data['username'] = $_SESSION['user'];
+        $data['current_tag'] = 'dashboard';
+        $this->load->view('templates/cms_template', $data);
+    }
+    public function posts()
+    {
+        redirect_not_login('userauth');
+        $data['username'] = $_SESSION['user'];
+        $data['current_tag'] = 'posts';
+        $this->load->view('templates/cms_template', $data);
     }
 }

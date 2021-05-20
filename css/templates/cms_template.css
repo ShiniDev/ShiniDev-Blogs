@@ -1,0 +1,124 @@
+/* Tags */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto", sans-serif;
+	color: var(--page-font-color);
+	background-color: var(--page-background-color);
+}
+
+aside {
+	width: 300px;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	color: var(--header-font-color);
+	background-color: var(--header-background-color);
+	padding: 0.5em;
+}
+/* -------------------- */
+
+/* Selectors */
+
+div.content {
+	margin-left: 300px;
+	min-height: 100vh;
+}
+
+aside > * + * {
+	margin-top: 0.75em;
+}
+
+.profile > * + * {
+	margin-top: 1em;
+}
+
+.button-container a {
+	text-decoration: none;
+	color: inherit;
+	font-size: 0.8rem;
+	transition: color 0.2s ease-in;
+	transition: font-size 0.2s ease-out;
+}
+
+.button-container a:hover {
+	color: #fff;
+	font-size: 0.9rem;
+}
+
+.button-container > * + * {
+	margin-top: 1em;
+}
+
+.button-container > * {
+	margin-right: -0.5em;
+}
+
+div[name="posts"] > div {
+	margin-left: 1em;
+	display: none;
+}
+
+div[name="posts"] > div.visible {
+	margin-left: 1em;
+	display: flex;
+}
+
+div[name="posts"] > div > * {
+	margin-top: 1em;
+}
+
+/* -------------------- */
+
+/* Classes */
+.flex-container {
+	display: flex;
+}
+
+.flex-column {
+	flex-direction: column;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+.flex-center-all {
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-center-x {
+	justify-content: center;
+}
+
+.flex-center-y {
+	align-items: center;
+}
+
+.shinidev-image {
+	border-radius: 50%;
+	width: 3.4rem;
+	height: 3.4rem;
+}
+
+.name {
+	/* font-family: serif; */
+}
+
+.profile {
+	margin-bottom: 1em;
+}
+
+.bottom-place {
+	margin-top: auto;
+}
+
+.button-container {
+	flex: 1;
+	/* font-family: sans-serif; */
+	color: var(--sidenav-font-color);
+	padding-left: 0.5em;
+	padding-bottom: 1em;
+}
+/* -------------------- */

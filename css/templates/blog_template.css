@@ -1,10 +1,5 @@
-:root {
-	box-sizing: border-box;
-	font-size: calc(0.5em + 1vmin + 0.75vmax);
-}
-
 body {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: "Roboto", sans-serif;
 	color: var(--page-font-color);
 	background-color: var(--page-background-color);
 	margin: 0;
@@ -22,12 +17,6 @@ div.content {
 
 aside.flex-container {
 	flex: 1;
-}
-
-*,
-::before,
-::after {
-	box-sizing: inherit;
 }
 
 .shinidev-image {

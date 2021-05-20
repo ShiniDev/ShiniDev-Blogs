@@ -7,4 +7,14 @@
 	--page-font-color: #000;
 	--header-font-color: #fff;
 	/* --footer-font-color: #999; */
+	--sidenav-font-color: #bbb;
+	box-sizing: border-box;
+	font-size: calc(0.5em + 1vmin + 0.75vmax);
+	line-height: 1.5;
+}
+
+*,
+::before,
+::after {
+	box-sizing: inherit;
 }
