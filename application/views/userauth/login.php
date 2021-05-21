@@ -32,8 +32,8 @@
             </div>
         <?php } ?>
         <input type="submit" name="login-submit" value="Login">
-        <div class="flex-container">
-            <a href="<?= base_url() ?>userauth/register" class="register">Register</a>
+        <div class="flex-container flex-center">
+            <!-- <a href="<?= base_url() ?>userauth/register" class="register">Register</a> -->
             <p class="copyright">&copy; shinidev 2021</p>
         </div>
         <?= form_close() ?>

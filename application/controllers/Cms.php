@@ -14,11 +14,18 @@ class Cms extends CI_Controller
         $data['current_tag'] = 'dashboard';
         $this->load->view('templates/cms_template', $data);
     }
-    public function posts()
+    public function lists()
     {
         redirect_not_login('userauth');
         $data['username'] = $_SESSION['user'];
-        $data['current_tag'] = 'posts';
+        $data['current_tag'] = 'lists';
+        $this->load->view('templates/cms_template', $data);
+    }
+    public function create()
+    {
+        redirect_not_login('userauth');
+        $data['username'] = $_SESSION['user'];
+        $data['current_tag'] = 'create';
         $this->load->view('templates/cms_template', $data);
     }
 }

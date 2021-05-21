@@ -96,7 +96,7 @@ body > div.flex-center {
 
 .copyright {
 	margin: 0;
-	margin-left: 1em;
+	/* margin-left: 1em; */
 	font-size: 0.65rem;
 }
 

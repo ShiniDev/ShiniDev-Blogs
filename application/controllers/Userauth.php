@@ -13,7 +13,7 @@ class Userauth extends CI_Controller
         redirect_if_login('cms');
         redirect(base_url('userauth/login'));
     }
-    public function register()
+    private function register()
     {
         redirect_if_login('cms');
         // Do not erase, removing would always set run() to false

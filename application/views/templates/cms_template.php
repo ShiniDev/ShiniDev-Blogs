@@ -20,6 +20,25 @@
       color: black;
       font-size: 0.9rem;
     }
+
+    div[name="posts"]>div>a[name="<?= $current_tag ?? 'non_existent' ?>"] {
+      color: black;
+      font-size: 0.9rem;
+      background-color: white;
+    }
+
+    <?php if (isset($current_tag)) {
+      if ($current_tag == 'lists' || $current_tag == 'create') { ?>div[name="posts"]>div {
+      display: flex;
+    }
+
+    div[name="posts"]>div.visible {
+      margin-left: 1em;
+      display: none;
+    }
+
+    <?php }
+    } ?>
   </style>
 </head>
 
@@ -43,8 +62,8 @@
       <div name="posts">
         <a href="#" onclick="showList()">Posts</a>
         <div class="flex-container flex-column">
-          <a href="<?= base_url() ?>cms/lists">List of Posts</a>
-          <a href="<?= base_url() ?>cms/create">Create Post</a>
+          <a name="lists" href="<?= base_url() ?>cms/lists">List of Posts</a>
+          <a name="create" href="<?= base_url() ?>cms/create">Create Post</a>
         </div>
       </div>
       <div class="bottom-place">
