@@ -11,7 +11,7 @@ Planned Features<ol>
   <li>Images on blog posts</li>
 </ol>
 Plans<ol>
-  <li>Remove register feature, as this is a blog site</li>
+	<li><s>Remove register feature, as this is a blog site</s> - Done</li>
 </ol>
 
 <h2>Preview</h2>
