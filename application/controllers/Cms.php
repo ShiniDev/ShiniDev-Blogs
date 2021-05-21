@@ -24,8 +24,14 @@ class Cms extends CI_Controller
     public function create()
     {
         redirect_not_login('userauth');
-        $data['username'] = $_SESSION['user'];
-        $data['current_tag'] = 'create';
-        $this->load->view('templates/cms_template', $data);
+        $this->form_validation->set_rules('title', 'Title', 'required');
+        if ($this->form_validation->run() === FALSE)
+        {
+            $data['username'] = $_SESSION['user'];
+            $data['styles'] = '<link rel="stylesheet" type="text/css" href="' . base_url() . 'css/cms/create.css">';
+            $data['content'] = $this->load->view('cms/create', [], TRUE);
+            $data['current_tag'] = 'create';
+            $this->load->view('templates/cms_template', $data);
+        }
     }
 }

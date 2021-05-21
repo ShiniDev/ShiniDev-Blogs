@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/variables.css">
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/templates/cms_template.css">
+  <?= $styles ?? '' ?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shinidev</title>
   <style>
@@ -27,8 +28,10 @@
       background-color: white;
     }
 
-    <?php if (isset($current_tag)) {
-      if ($current_tag == 'lists' || $current_tag == 'create') { ?>div[name="posts"]>div {
+    <?php if (isset($current_tag))
+    {
+      if ($current_tag == 'lists' || $current_tag == 'create')
+      { ?>div[name="posts"]>div {
       display: flex;
     }
 
@@ -73,8 +76,8 @@
       </div>
     </div>
   </aside>
-  <div class="content flex-container">
-
+  <div class="content flex-container flex-column">
+    <?= $content ?? '' ?>
   </div>
   <script src="<?= base_url() ?>js/cms/helper.js"></script>
 </body>
