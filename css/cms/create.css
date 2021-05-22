@@ -1,4 +1,8 @@
 /* HTML Tags */
+h3 {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
 label {
 	font-size: 0.8rem;
 }
@@ -15,9 +19,41 @@ textarea {
 	border: 2px solid lightgray;
 	border-radius: 0.5em;
 }
+.span-button {
+	background-color: var(--header-button-background-color);
+	font-size: 0.8rem;
+	border-radius: 0.5em;
+	padding: 0.25em 0.5em;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.3s ease-out;
+}
 /* CSS Selectors */
+.form > * + * {
+	margin-top: 0.5em;
+}
 input[name="title"] {
-	width: 40%;
+	width: 80%;
+}
+select[name="category"] {
+	width: 80%;
 }
 input[type="submit"] {
+}
+input[type="file"] {
+	margin-top: 0.3em;
+}
+textarea[name="blog-preview"] {
+	flex: 0.2;
+}
+div[name="image-container"] {
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+.form > .flex-container > * {
+	flex: 1;
+}
+/* Actions */
+.span-button:hover {
+	background-color: var(--header-button-hover-background-color);
 }
