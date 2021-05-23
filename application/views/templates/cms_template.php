@@ -13,6 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shinidev</title>
   <style>
+    /* The code below handles the highlight of the current page */
     .button-container>div[name="<?= $current_tag ?? 'non_existent' ?>"] {
       background-color: white;
     }
@@ -28,10 +29,8 @@
       background-color: white;
     }
 
-    <?php if (isset($current_tag))
-    {
-      if ($current_tag == 'lists' || $current_tag == 'create')
-      { ?>div[name="posts"]>div {
+    <?php if (isset($current_tag)) {
+      if ($current_tag == 'lists' || $current_tag == 'create') { ?>div[name="posts"]>div {
       display: flex;
     }
 
@@ -42,6 +41,7 @@
 
     <?php }
     } ?>
+    /* End */
   </style>
 </head>
 

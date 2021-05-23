@@ -1,9 +1,9 @@
 <h3>Create Post</h3>
 <?= form_open_multipart('cms/create', 'class=form'); ?>
-<div class="flex-container">
+<div class="flex-container form-top-container">
     <div class="flex-container flex-column">
         <label for="title">Title</label>
-        <input type="text" name="title" id="title" required>
+        <input type="text" name="title" id="title" value="<?= $_SESSION['formdata']['title'] ?? '' ?>" required>
         <label for="category">Category</label>
         <select name="category" id="category">
             <option value="programming">Programming</option>
@@ -16,24 +16,60 @@
     <div class="flex-container flex-column">
         <div class="flex-container" name="image-container">
             <input type="file" name="image" id="image" multiple="multiple">
-            <span class="span-button">Add Image</span>
+            <span class="span-button" id="upload-button">Add Image</span>
         </div>
         <div class="flex-container flex-column">
             <label for="images">Image Files</label>
-            <textarea id="images" name="images" readonly></textarea>
+            <textarea id="images" name="images" readonly><?= $_SESSION['formdata']['images'] ?? '' ?></textarea>
         </div>
     </div>
 </div>
-<label for="blog-preview">Preview Content</label>
-<textarea name="blog-preview" id="blog-preview">
-</textarea>
-<label for="blog-content">Content</label>
-<textarea name="blog-content" id="blog-content" required>
-</textarea>
-<input type="submit" value="Add Post">
+<label for="blog-preview">Preview Text</label>
+<textarea name="blog-preview" id="blog-preview" required><?= $_SESSION['formdata']['preview'] ?? '' ?></textarea>
+<div class="flex-container flex-space-between">
+    <label for="blog-content">Content</label>
+    <span class="span-button" id="markup-button">Markup Help</span>
+</div>
+<textarea name="blog-content" id="blog-content" required><?= $_SESSION['formdata']['content'] ?? '' ?></textarea>
+<div class="flex-container flex-position-right">
+    <span class="span-button" id="preview-button">Preview</span>
+    <input type="submit" value="Add Post">
+</div>
 <?= form_close() ?>
+<div id="preview-container">
+</div>
 <script>
-    const uploadButton = document.querySelector('span[class="span-button"]');
+    let uploadButton = document.querySelector('#upload-button');
+    let previewButton = document.querySelector('#preview-button');
+    let markupButton = document.querySelector('#markup-button');
+    let categorySelect = document.querySelector('#category');
+    let titleData = document.querySelector('#title');
+    let previewData = document.querySelector('#blog-preview');
+    let contentData = document.querySelector('#blog-content');
+    let imageData = document.querySelector('#images');
+    let categoryData = document.querySelector('#category');
+    let preview = false;
+    window.onload = function() {
+        console.log('Select Option Changed!');
+        categorySelect.value = '<?= $_SESSION['formdata']['category'] ?? 'programming' ?>';
+    };
+    markupButton.addEventListener("click", function() {
+        alert('<BURL> - base_url of the server, use this when referring to inner resource\n\teg.<img href="<BURL>images/test.png">');
+    });
+    previewButton.addEventListener("click", function() {
+        let previewContainer = document.querySelector('#preview-container');
+        if (!preview) {
+            previewButton.innerText = "Hide Preview";
+            previewContainer.innerHTML = "<h1>" + titleData.value + "</h1>";
+            previewContainer.innerHTML += contentData.value.replace(/(\r\n|\n|\r)/gm, "").replace("<BURL>", "<?= base_url() ?>");
+            preview = true;
+        } else {
+            previewButton.innerText = "Preview";
+            previewContainer.innerHTML = null;
+            preview = false;
+        }
+
+    });
     uploadButton.addEventListener("click", function() {
         console.log('Uploading...')
         uploadButton.innerHTML = 'Uploading...';
@@ -43,10 +79,12 @@
         let files = image.files;
         for (let i = 0; i < files.length; ++i) {
             let file = files[i];
+            //Checks if the file is an image
             if (!/image.*/.test(file.type)) {
                 continue;
             }
             formData.append(i, file, file.name);
+            //Checks if the file is already listed
             let fileName = "images/" + file.name + "\n";
             if (!imageFiles.value.includes(fileName)) {
                 imageFiles.value += fileName;
@@ -63,10 +101,23 @@
     });
 
     function saveFormData() {
-        let titleData = document.querySelector('#title');
-        let previewData = document.querySelector('#blog-preview');
-        let contentData = document.querySelector('#blog-content');
-        let imageData = document.querySelector('#images');
-
+        let secure = 1;
+        let formData = new FormData();
+        let conn = new XMLHttpRequest();
+        formData.append('title', titleData.value);
+        formData.append('preview', previewData.value.trim());
+        formData.append('content', contentData.value.trim());
+        formData.append('images', imageData.value.trim());
+        formData.append('category', categoryData.value);
+        formData.append('secure', secure);
+        conn.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log('Saved');
+            }
+        }
+        conn.open('POST', '<?= base_url() ?>cms/save_data', true);
+        conn.send(formData);
     }
+    // Save form data every 5 seconds
+    setInterval(saveFormData, 5000);
 </script>

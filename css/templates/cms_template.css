@@ -96,6 +96,14 @@ div[name="posts"] > div > * {
 	align-items: center;
 }
 
+.flex-space-between {
+	justify-content: space-between;
+}
+
+.flex-position-right {
+	justify-content: right;
+}
+
 .shinidev-image {
 	border-radius: 50%;
 	width: 3.4rem;

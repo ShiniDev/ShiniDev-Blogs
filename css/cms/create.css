@@ -14,6 +14,7 @@ textarea {
 .form {
 	display: flex;
 	flex: 1;
+	min-height: 100vh;
 	flex-flow: column nowrap;
 	padding: 0.5em;
 	border: 2px solid lightgray;
@@ -27,22 +28,29 @@ textarea {
 	color: white;
 	cursor: pointer;
 	transition: background-color 0.3s ease-out;
+	text-align: center;
 }
 /* CSS Selectors */
-.form > * + * {
-	margin-top: 0.5em;
-}
+/* Inputs */
 input[name="title"] {
 	width: 80%;
 }
-select[name="category"] {
-	width: 80%;
-}
 input[type="submit"] {
+	width: 15%;
+	margin-left: 1em;
 }
 input[type="file"] {
 	margin-top: 0.3em;
 }
+/* End of Inputs */
+.form > * + * {
+	margin-top: 0.5em;
+}
+
+select[name="category"] {
+	width: 80%;
+}
+
 textarea[name="blog-preview"] {
 	flex: 0.2;
 }
@@ -50,7 +58,7 @@ div[name="image-container"] {
 	flex-flow: row wrap;
 	justify-content: space-between;
 }
-.form > .flex-container > * {
+.form-top-container > * {
 	flex: 1;
 }
 /* Actions */

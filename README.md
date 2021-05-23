@@ -14,6 +14,9 @@ Plans<ol>
 	<li><s>Remove register feature, as this is a blog site</s> - Done</li>
 </ol>
 
+<h2>Latest Preview</h2>
+<img src="assets/previews/Create Post.png" width="50%" height="50%" alt="Create Post">
+<img src="assets/previews/Preview.png" width="50%" height="50%" alt="Preview Post">
 <h2>Preview</h2>
 <img src="assets/previews/Homepage.png" width="50%" height="50%" alt="Homepage">
 <img src="assets/previews/Mobilehomepage.png" width="50%" height="50%" alt="MobileHomepage">

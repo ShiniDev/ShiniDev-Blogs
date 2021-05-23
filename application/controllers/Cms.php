@@ -31,12 +31,13 @@ class Cms extends CI_Controller
             $data['content'] = $this->load->view('cms/create', [], TRUE);
             $data['current_tag'] = 'create';
             $this->load->view('templates/cms_template', $data);
+        } else {
         }
     }
     public function upload_image()
     {
         if (!isset($_FILES[0])) {
-            // redirect(base_url() . 'cms');
+            redirect(base_url() . 'cms');
             return;
         }
         foreach ($_FILES as $images) {
@@ -45,5 +46,19 @@ class Cms extends CI_Controller
         }
         //Clear, to prevent unwanted access
         $_FILES = [];
+    }
+    public function save_data()
+    {
+        if (!isset($_POST['secure']) or $_POST['secure'] != 1) {
+            redirect(base_url() . 'cms');
+            return;
+        }
+        $_SESSION['formdata']['title'] = $_POST['title'];
+        $_SESSION['formdata']['preview'] = $_POST['preview'];
+        $_SESSION['formdata']['content'] = $_POST['content'];
+        $_SESSION['formdata']['images'] = $_POST['images'];
+        $_SESSION['formdata']['category'] = $_POST['category'];
+        $_POST['secure'] = 0;
+        unset($_POST['secure']);
     }
 }
