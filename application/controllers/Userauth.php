@@ -22,8 +22,8 @@ class Userauth extends CI_Controller
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('userauth/register');
         } else {
-            $name = html_escape($this->input->post('username'));
-            $pass = html_escape($this->input->post('password'));
+            $name = html_escape($_POST['username']);
+            $pass = html_escape($_POST['password']);
             $this->userauth_model->insert_user($name, $pass);
             redirect(base_url('userauth/login'));
         }
@@ -37,8 +37,8 @@ class Userauth extends CI_Controller
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('userauth/login');
         } else {
-            $name = html_escape($this->input->post('username'));
-            $pass = html_escape($this->input->post('password'));
+            $name = html_escape($_POST['username']);
+            $pass = html_escape($_POST['password']);
             $err_stat = $this->userauth_model->verify_user($name, $pass);
             if ($err_stat === 2) {
                 $data['error_msg'] = 'Incorrect username or password';

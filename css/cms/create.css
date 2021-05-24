@@ -61,6 +61,9 @@ div[name="image-container"] {
 .form-top-container > * {
 	flex: 1;
 }
+#clear-container {
+	flex: 1;
+}
 /* Actions */
 .span-button:hover {
 	background-color: var(--header-button-hover-background-color);

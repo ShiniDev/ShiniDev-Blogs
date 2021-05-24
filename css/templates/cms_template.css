@@ -22,7 +22,7 @@ aside {
 
 div.content {
 	margin-left: 300px;
-	min-height: 120vh;
+	/* min-height: 120vh; */
 }
 
 aside > * + * {

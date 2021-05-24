@@ -1,0 +1,91 @@
+table {
+	font-size: 0.6rem;
+	text-align: center;
+	border-collapse: collapse;
+}
+label {
+	font-size: 0.7rem;
+}
+td,
+th {
+	padding: 0.1em 0.3em;
+}
+table th {
+	background-image: linear-gradient(#fff, #ccc);
+}
+table textarea {
+	resize: none;
+}
+
+/* Classes */
+
+.display-handler {
+	align-items: center;
+	border: 2px solid lightgray;
+	border-radius: 0.5em;
+	padding: 0.5em 1em;
+	margin-bottom: 0.3em;
+}
+
+.navigation-seperator {
+	width: 1.5em;
+	height: 1.2em;
+}
+
+.action-container {
+	display: flex;
+	justify-content: space-around;
+	color: #fff;
+}
+
+.odd-item {
+	background-color: #ddd;
+}
+
+.update-button {
+	background-color: #2fdb3d;
+	border-radius: 0.3em;
+	padding: 0.2em 0.4em;
+	transition: all 0.3s ease-out;
+}
+
+.delete-button {
+	background-color: #e82f25;
+	border-radius: 0.3em;
+	padding: 0.2em 0.4em;
+	transition: all 0.3s ease-out;
+}
+/* Actions */
+
+.update-button:hover {
+	background-color: #51db59;
+	font-size: 0.65rem;
+}
+
+.delete-button:hover {
+	background-color: #fa2121;
+	font-size: 0.65rem;
+}
+
+/* Selectors */
+.update-button > a {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	font-weight: bold;
+}
+
+.delete-button > a {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	font-weight: bold;
+}
+
+.display-handler > * + * {
+	margin-left: 1em;
+}
+
+.action-container > * + * {
+	margin-left: 0.2em;
+}

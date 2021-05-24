@@ -31,7 +31,15 @@
     <span class="span-button" id="markup-button">Markup Help</span>
 </div>
 <textarea name="blog-content" id="blog-content" required><?= $_SESSION['formdata']['content'] ?? '' ?></textarea>
+<div>
+    <?php if ($hasError) { ?>
+        Post exists
+    <?php } ?>
+</div>
 <div class="flex-container flex-position-right">
+    <div class="flex-container" id="clear-container">
+        <span class="span-button" id="clear-button">Clear Everything</span>
+    </div>
     <span class="span-button" id="preview-button">Preview</span>
     <input type="submit" value="Add Post">
 </div>
@@ -42,6 +50,7 @@
     let uploadButton = document.querySelector('#upload-button');
     let previewButton = document.querySelector('#preview-button');
     let markupButton = document.querySelector('#markup-button');
+    let clearButton = document.querySelector('#clear-button');
     let categorySelect = document.querySelector('#category');
     let titleData = document.querySelector('#title');
     let previewData = document.querySelector('#blog-preview');
@@ -50,9 +59,17 @@
     let categoryData = document.querySelector('#category');
     let preview = false;
     window.onload = function() {
-        console.log('Select Option Changed!');
+        // console.log('Select Option Changed!');
         categorySelect.value = '<?= $_SESSION['formdata']['category'] ?? 'programming' ?>';
     };
+    clearButton.addEventListener("click", function() {
+        categorySelect.value = 'programming';
+        titleData.value = '';
+        previewData.value = '';
+        contentData.value = '';
+        imageData.value = '';
+        saveFormData();
+    });
     markupButton.addEventListener("click", function() {
         alert('<BURL> - base_url of the server, use this when referring to inner resource\n\teg.<img href="<BURL>images/test.png">');
     });
@@ -71,7 +88,7 @@
 
     });
     uploadButton.addEventListener("click", function() {
-        console.log('Uploading...')
+        // console.log('Uploading...')
         uploadButton.innerHTML = 'Uploading...';
         let imageFiles = document.querySelector("#images");
         let conn = new XMLHttpRequest();
@@ -93,7 +110,7 @@
         conn.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 uploadButton.innerHTML = 'Add Image';
-                console.log('Upload Success')
+                // console.log('Upload Success')
             }
         };
         conn.open('POST', '<?= base_url() ?>cms/upload_image', true);
@@ -112,7 +129,7 @@
         formData.append('secure', secure);
         conn.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log('Saved');
+                // console.log('Saved');
             }
         }
         conn.open('POST', '<?= base_url() ?>cms/save_data', true);
