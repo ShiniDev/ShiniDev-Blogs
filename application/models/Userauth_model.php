@@ -19,12 +19,15 @@ class Userauth_model extends CI_Model
      */
     public function insert_user(string $user_name, string $password, int $status = 0): void
     {
-        $query = $this->db->query('SELECT NULL FROM users LIMIT 1');
-        if ($query->num_rows()) { // Not Empty, create a standard account
+        $total_users = $this->total_users();
+        if ($total_users)
+        { // Not Empty, create a standard account
             $password = password_hash($password, PASSWORD_BCRYPT);
             $statement = "INSERT INTO users (status, name, password) VALUES (?, ?, ?)";
             $this->db->query($statement, array($status, $user_name, $password));
-        } else {                  // Empty, create an admin account
+        }
+        else
+        {                  // Empty, create an admin account
             $password = password_hash($password, PASSWORD_BCRYPT);
             $statement = "INSERT INTO users (status, name, password) VALUES (?, ?, ?)";
             $this->db->query($statement, array(1, $user_name, $password));
@@ -47,14 +50,30 @@ class Userauth_model extends CI_Model
         $err_status = 0;
         $statement = "SELECT * FROM users WHERE name = ?";
         $query = $this->db->query($statement, array($username))->row_array();
-        if ($query !== NULL) {
+        if ($query !== NULL)
+        {
             $pass_hash = $query['password'];
-            if (!password_verify($password, $pass_hash)) {
+            if (!password_verify($password, $pass_hash))
+            {
                 $err_status = 1; // Invalid Password
             }
-        } else {
+        }
+        else
+        {
             $err_status = 2;    // Username does not exists
         }
         return $err_status;
+    }
+    /**
+     *  Total Users
+     * 
+     *  A simple SQL query which returns the 
+     *  total users in the database.
+     *  
+     *  @return int Total users
+     */
+    public function total_users(): int
+    {
+        return $this->db->query('SELECT * FROM users')->num_rows();
     }
 }

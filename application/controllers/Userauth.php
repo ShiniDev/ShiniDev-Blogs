@@ -13,15 +13,24 @@ class Userauth extends CI_Controller
         redirect_if_login('cms');
         redirect(base_url('userauth/login'));
     }
-    private function register()
+    public function register()
     {
         redirect_if_login('cms');
         // Do not erase, removing would always set run() to false
+        $total_user = $this->userauth_model->total_users();
+        if ($total_user)
+        {
+            $this->login();
+            return;
+        }
         $this->form_validation->set_rules('username', 'Username', 'required');
 
-        if ($this->form_validation->run() === FALSE) {
+        if ($this->form_validation->run() === FALSE)
+        {
             $this->load->view('userauth/register');
-        } else {
+        }
+        else
+        {
             $name = html_escape($_POST['username']);
             $pass = html_escape($_POST['password']);
             $this->userauth_model->insert_user($name, $pass);
@@ -32,19 +41,33 @@ class Userauth extends CI_Controller
     {
         redirect_if_login('cms');
         // Do not erase, removing would always set run() to false
+        $total_user = $this->userauth_model->total_users();
+        if (!$total_user)
+        {
+            $this->register();
+            return;
+        }
         $this->form_validation->set_rules('username', 'Username', 'required');
 
-        if ($this->form_validation->run() === FALSE) {
+        if ($this->form_validation->run() === FALSE)
+        {
             $this->load->view('userauth/login');
-        } else {
+        }
+        else
+        {
             $name = html_escape($_POST['username']);
             $pass = html_escape($_POST['password']);
             $err_stat = $this->userauth_model->verify_user($name, $pass);
-            if ($err_stat === 2) {
+            if ($err_stat === 2)
+            {
                 $data['error_msg'] = 'Incorrect username or password';
-            } else if ($err_stat === 1) {
+            }
+            else if ($err_stat === 1)
+            {
                 $data['error_msg'] = 'Incorrect username or password';
-            } else {
+            }
+            else
+            {
                 $_SESSION['user'] = $name;
                 $_SESSION['loggedin'] = true;
                 redirect(base_url() . 'cms/');

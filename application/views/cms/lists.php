@@ -50,7 +50,7 @@
                 <td>
                     <div class="action-container">
                         <span class="update-button"><a href="<?= base_url() . 'cms/update/' . $row_data['id'] ?>">update</a></span>
-                        <span class="delete-button"><a onclick="return confirm('Delete this post?');" href="<?= base_url() . 'cms/delete/' . $row_data['id'] ?>">delete</a></span>
+                        <span class="delete-button"><a onclick="return delete_post(<?= $row_data['id'] ?>);" href="<?= base_url() . 'cms/delete/' . $row_data['id'] ?>">delete</a></span>
                     </div>
                 </td>
                 <td><?= $row_data['id'] ?></td>
@@ -72,5 +72,28 @@
         // console.log('Select Option Changed!');
         pageSelect.value = '<?= base_url() . 'cms/lists/' . $page . '/' . $limit ?>';
         rowNumSelect.value = '<?= base_url() . 'cms/lists/' . $page . '/' . $limit ?>';
+    };
+
+    function delete_post(id) {
+        if (!confirm('Delete this post?')) {
+            return false;
+        }
+        console.log(id);
+        let conn = new XMLHttpRequest();
+        let secData = new FormData();
+        secData.append('secure', 'true');
+        conn.onreadystatechange = function() {
+            if (this.status == 200 && this.readyState == 4) {
+                if (this.responseText == 'true') {
+                    alert('Post deleted');
+                    location.reload();
+                } else {
+                    alert('Failed to delete post');
+                }
+            }
+        };
+        conn.open('POST', '<?= base_url() ?>cms/delete/' + String(id), true);
+        conn.send(secData);
+        return false;
     };
 </script>

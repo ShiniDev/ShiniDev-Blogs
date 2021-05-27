@@ -40,6 +40,7 @@ class Cms extends CI_Controller
         $res = $this->cms_model->get_posts();
         $total_posts = $res->num_rows();
         $data['content']['total_pages'] = (int)ceil((float)$total_posts / (float)$limit);
+        $data['content']['total_pages'] = $data['content']['total_pages'] > 0 ? $data['content']['total_pages'] : 1;
         if ($page > $data['content']['total_pages']) $page = $data['content']['total_pages'];
         $offset = ($page - 1) * $limit;
         $data['content']['db'] =  $this->cms_model->get_posts_limit($offset, $limit);
@@ -73,7 +74,7 @@ class Cms extends CI_Controller
         else
         {
             $title = htmlspecialchars($_POST['title']);
-            if ($this->cms_model->post_exists($title))
+            if ($this->cms_model->post_exists(["title"], [$title]))
             {
                 $data['username'] = $_SESSION['user'];
                 $data['styles'] = '<link rel="stylesheet" type="text/css" href="' . base_url() . 'css/cms/create.css">';
@@ -91,34 +92,41 @@ class Cms extends CI_Controller
             redirect(base_url() . 'cms/lists');
         }
     }
+    public function delete($id = '0')
+    {
+        redirect_not_login('userauth');
+        if (!isset($_POST['secure']))
+        {
+            redirect(base_url() . 'cms/lists');
+        }
+        $res = $this->cms_model->delete_post((int)$id);
+        if ($res) echo 'true';
+        else echo 'false';
+        unset($_POST['secure']);
+        // $this->create();
+    }
+    public function update($id = '0')
+    {
+        redirect_not_login('userauth');
+    }
     public function upload_image()
     {
+        redirect_not_login('userauth');
         if (!isset($_FILES[0]))
         {
             redirect(base_url() . 'cms');
             return;
         }
-        foreach ($_FILES as $images)
-        {
-            $name = $images['name'];
-            move_uploaded_file($images['tmp_name'], './images/' . $name);
-        }
-        //Clear, to prevent unwanted access
-        $_FILES = [];
+        $this->cms_model->save_image();
     }
     public function save_data()
     {
+        redirect_not_login('userauth');
         if (!isset($_POST['secure']) or $_POST['secure'] != 1)
         {
             redirect(base_url() . 'cms');
             return;
         }
-        $_SESSION['formdata']['title'] = $_POST['title'];
-        $_SESSION['formdata']['preview'] = $_POST['preview'];
-        $_SESSION['formdata']['content'] = $_POST['content'];
-        $_SESSION['formdata']['images'] = $_POST['images'];
-        $_SESSION['formdata']['category'] = $_POST['category'];
-        $_POST['secure'] = 0;
-        unset($_POST['secure']);
+        $this->cms_model->save_data();
     }
 }

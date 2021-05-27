@@ -6,6 +6,7 @@ class Blog extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('cms_model');
     }
 
     // Goes to the home page of the blogsite

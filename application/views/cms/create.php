@@ -32,7 +32,8 @@
 </div>
 <textarea name="blog-content" id="blog-content" required><?= $_SESSION['formdata']['content'] ?? '' ?></textarea>
 <div>
-    <?php if ($hasError) { ?>
+    <?php if ($hasError)
+    { ?>
         Post exists
     <?php } ?>
 </div>
@@ -78,7 +79,7 @@
         if (!preview) {
             previewButton.innerText = "Hide Preview";
             previewContainer.innerHTML = "<h1>" + titleData.value + "</h1>";
-            previewContainer.innerHTML += contentData.value.replace(/(\r\n|\n|\r)/gm, "").replace("<BURL>", "<?= base_url() ?>");
+            previewContainer.innerHTML += contentData.value.replaceAll(/(\r\n|\n|\r)/gm, "").replaceAll("<BURL>", "<?= base_url() ?>");
             preview = true;
         } else {
             previewButton.innerText = "Preview";

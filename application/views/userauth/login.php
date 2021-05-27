@@ -25,7 +25,8 @@
             <input onchange="showPassword()" type="checkbox" name="visible-pass">
             <p>Show password</p>
         </div>
-        <?php if (isset($error_msg)) { ?>
+        <?php if (isset($error_msg))
+        { ?>
             <div class="flex-container error-container">
                 <!-- <p class="close-button">x</p> -->
                 <p class="error-msg"><?= $error_msg ?></p>
