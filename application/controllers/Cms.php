@@ -108,6 +108,39 @@ class Cms extends CI_Controller
     public function update($id = '0')
     {
         redirect_not_login('userauth');
+        date_default_timezone_set('Asia/Singapore');
+        $this->form_validation->set_rules('title', 'Title', 'required');
+        $res = $this->cms_model->get_specific_post(['id'], [(int)$id]);
+        if (!empty($res))
+        {
+            if ($this->form_validation->run() === FALSE)
+            {
+                $data['styles'] = '
+                <link rel="stylesheet" type="text/css" href="' . base_url() . 'css/cms/create.css">
+                <link rel="stylesheet" type="text/css" href="' . base_url() . 'css/cms/update.css">
+                ';
+                $data['content']['res'] = $res;
+                $data['content']['id'] = $id;
+                $data['content'] = $this->load->view('cms/update', $data['content'], TRUE);
+                $data['username'] = $_SESSION['user'];
+                $this->load->view('templates/cms_template', $data);
+            }
+            else
+            {
+                $title = htmlspecialchars($_POST['title']);
+                $previewContent = $_POST['blog-preview'];
+                $content = $_POST['blog-content'];
+                $category = $_POST['category'];
+                $slug = url_title($title, '-', TRUE);
+                $this->cms_model->update_post(['title', 'category', 'content', 'preview', 'slug'], [$title, $category, $content, $previewContent, $slug], ['id'], [(int)$id]);
+                redirect(base_url() . 'cms/lists');
+            }
+        }
+        else
+        {
+            // Redirect to error page if the $id parameter does not exist
+            redirect(base_url() . 'error404');
+        }
     }
     public function upload_image()
     {

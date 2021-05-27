@@ -38,6 +38,7 @@ input[name="title"] {
 input[type="submit"] {
 	width: 15%;
 	margin-left: 1em;
+	cursor: pointer;
 }
 input[type="file"] {
 	margin-top: 0.3em;
@@ -67,4 +68,7 @@ div[name="image-container"] {
 /* Actions */
 .span-button:hover {
 	background-color: var(--header-button-hover-background-color);
+}
+input[type="submit"]:hover {
+	background-color: #ddd;
 }
