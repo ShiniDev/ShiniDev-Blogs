@@ -4,7 +4,7 @@ Current Features<ol>
   <li>Login/Register implemented using session</li>
 </ol>
 Planned Features<ol>
-  <li>Content Management of Blog Posts / CRUD</li>
+  <li><s>Content Management of Blog Posts / CRUD</s> - Done</li>
   <li>Clean display of blog posts in home page</li>
   <li>Recent blog posts on sidebar</li>
   <li>Group blog posts on specific tags</li>
