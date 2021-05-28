@@ -7,7 +7,7 @@ body {
 	background-color: var(--page-background-color);
 }
 
-aside {
+.aside {
 	width: 300px;
 	height: 100vh;
 	position: fixed;
@@ -25,7 +25,7 @@ div.content {
 	/* min-height: 120vh; */
 }
 
-aside > * + * {
+.aside > * + * {
 	margin-top: 0.75em;
 }
 
@@ -134,3 +134,53 @@ div[name="posts"] > div > * {
 	padding: 1em;
 }
 /* -------------------- */
+/* Media Queries */
+
+@media (max-width: 800px) {
+	.aside {
+		/* min-height: 10vh;
+		position: fixed; */
+		width: 100%;
+		height: 10vh;
+		position: relative;
+		top: 0;
+		flex-flow: row;
+	}
+
+	.aside .flex-column {
+		flex-flow: row;
+	}
+	.aside > .button-container * {
+		margin-top: 0;
+		margin-left: 1em;
+	}
+	div[name="posts"] {
+		display: flex;
+	}
+	div[name="posts"] > a {
+		display: none;
+	}
+	div[name="posts"] > div {
+		display: flex;
+	}
+	div.content {
+		/* margin-left: 0;
+		margin-top: 10vh; */
+		margin-left: 0;
+	}
+	#body {
+		display: flex;
+		flex-flow: column;
+	}
+	.button-container a {
+		font-size: 0.6rem;
+	}
+	.button-container a:hover {
+		color: #fff;
+		font-size: 0.7rem;
+	}
+	#body > .aside > .button-container > * {
+		color: #fff;
+		background-color: var(--header-background-color);
+	}
+}

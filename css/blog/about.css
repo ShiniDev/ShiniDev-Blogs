@@ -1,0 +1,20 @@
+.about img {
+	min-width: 55%;
+	min-height: 55%;
+	max-height: 70vh;
+	max-width: 70vw;
+}
+
+.about p {
+	font-size: 0.78rem;
+}
+
+.about .profile {
+	min-width: 45%;
+	min-height: 45%;
+	max-height: 70vh;
+	max-width: 70vw;
+	border-radius: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}

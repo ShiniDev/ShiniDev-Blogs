@@ -31,8 +31,12 @@
     <span class="span-button" id="markup-button">Markup Help</span>
 </div>
 <textarea name="blog-content" id="blog-content" required><?= $res['content'] ?></textarea>
-<div>
+<div class="error-box">
     <!-- Error Here -->
+    <?php if ($hasError)
+    { ?>
+        <div class="error-msg">Post exists</div>
+    <?php } ?>
 </div>
 <div class="flex-container flex-position-right">
     <div class="flex-container" id="clear-container">

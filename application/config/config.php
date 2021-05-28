@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/WebDevelopment/ShiniDev-Blogs/';
+$config['base_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/WebDevelopment/ShiniDev-Blogs/';
 
 /*
 |--------------------------------------------------------------------------

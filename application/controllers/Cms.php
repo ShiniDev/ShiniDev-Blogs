@@ -11,8 +11,18 @@ class Cms extends CI_Controller
     public function index()
     {
         redirect_not_login('userauth');
+
+        $data['content']['total_post'] = $this->cms_model->get_posts()->num_rows();
+        $data['content']['programming_category'] = $this->cms_model->get_specific_posts(['category'], ['programming'])->num_rows();
+        $data['content']['devlogs_category'] = $this->cms_model->get_specific_posts(['category'], ['devlogs'])->num_rows();
+        $data['content']['tips_category'] = $this->cms_model->get_specific_posts(['category'], ['tips'])->num_rows();
+        $data['content']['projects_category'] = $this->cms_model->get_specific_posts(['category'], ['projects'])->num_rows();
+        $data['content']['learnings_category'] = $this->cms_model->get_specific_posts(['category'], ['learnings'])->num_rows();
+
         $data['username'] = $_SESSION['user'];
         $data['current_tag'] = 'dashboard';
+        $data['styles'] = '<link rel="stylesheet" type="text/css" href="' . base_url() . 'css/cms/dashboard.css">';
+        $data['content'] = $this->load->view('cms/dashboard', $data['content'], TRUE);
         $this->load->view('templates/cms_template', $data);
     }
     public function lists(int $page = 1, int $limit = 10)
@@ -110,7 +120,7 @@ class Cms extends CI_Controller
         redirect_not_login('userauth');
         date_default_timezone_set('Asia/Singapore');
         $this->form_validation->set_rules('title', 'Title', 'required');
-        $res = $this->cms_model->get_specific_post(['id'], [(int)$id]);
+        $res = $this->cms_model->get_specific_posts(['id'], [(int)$id])->row_array();
         if (!empty($res))
         {
             if ($this->form_validation->run() === FALSE)
@@ -121,6 +131,7 @@ class Cms extends CI_Controller
                 ';
                 $data['content']['res'] = $res;
                 $data['content']['id'] = $id;
+                $data['content']['hasError'] = false;
                 $data['content'] = $this->load->view('cms/update', $data['content'], TRUE);
                 $data['username'] = $_SESSION['user'];
                 $this->load->view('templates/cms_template', $data);
@@ -128,6 +139,20 @@ class Cms extends CI_Controller
             else
             {
                 $title = htmlspecialchars($_POST['title']);
+                if ($this->cms_model->post_exists(["title"], [$title]) && $title !== $res['title'])
+                {
+                    $data['username'] = $_SESSION['user'];
+                    $data['styles'] = '
+                    <link rel="stylesheet" type="text/css" href="' . base_url() . 'css/cms/create.css">
+                    <link rel="stylesheet" type="text/css" href="' . base_url() . 'css/cms/update.css">
+                    ';
+                    $data['content']['res'] = $res;
+                    $data['content']['id'] = $id;
+                    $data['content']['hasError'] = true;
+                    $data['content'] = $this->load->view('cms/update', $data['content'], TRUE);
+                    $this->load->view('templates/cms_template', $data);
+                    return;
+                }
                 $previewContent = $_POST['blog-preview'];
                 $content = $_POST['blog-content'];
                 $category = $_POST['category'];

@@ -30,6 +30,18 @@ textarea {
 	transition: background-color 0.3s ease-out;
 	text-align: center;
 }
+.error-box {
+	flex-flow: column wrap;
+	margin-top: 0.75em;
+	padding: 0.5em 0;
+	border: 2px solid #ffaaaa;
+	background-color: #ffd8d8;
+	color: darkred;
+}
+.error-msg {
+	text-align: center;
+	font-size: 0.5rem;
+}
 /* CSS Selectors */
 /* Inputs */
 input[name="title"] {

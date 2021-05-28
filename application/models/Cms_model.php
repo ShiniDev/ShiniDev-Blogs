@@ -103,16 +103,27 @@ class Cms_model extends CI_Model
 	 * 
 	 *  @param array $column the column data field
 	 *  @param array $data the data for column field
-	 *  @return array Returns the values of the post, empty if not found
+	 *  @return resource 
 	 */
-	public function get_specific_post(array $column, array $data): array
+	public function get_specific_posts(array $column, array $data)
 	{
 		$statement = "SELECT * FROM posts_data WHERE ";
 		for ($i = 0; $i < count($column); ++$i)
 		{
 			$statement .= $i + 1 < count($column) ? $column[$i] . " = ?, " : $column[$i] . " = ? ";
 		}
-		return $this->db->query($statement, $data)->row_array();
+		return $this->db->query($statement, $data);
+	}
+	public function get_specific_posts_limit(array $column, array $data, int $offset, int $limit)
+	{
+		$statement = "SELECT * FROM posts_data WHERE ";
+		for ($i = 0; $i < count($column); ++$i)
+		{
+			$statement .= $i + 1 < count($column) ? $column[$i] . " = ?, " : $column[$i] . " = ? ";
+		}
+		$statement .= " LIMIT ?, ?";
+		array_push($data, $offset, $limit);
+		return $this->db->query($statement, $data);
 	}
 	public function update_post(array $update_column, array $update_data, array $where_column, array $where_data)
 	{

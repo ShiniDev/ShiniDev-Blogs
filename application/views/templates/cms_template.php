@@ -29,8 +29,10 @@
       background-color: white;
     }
 
-    <?php if (isset($current_tag)) {
-      if ($current_tag == 'lists' || $current_tag == 'create') { ?>div[name="posts"]>div {
+    <?php if (isset($current_tag))
+    {
+      if ($current_tag == 'lists' || $current_tag == 'create')
+      { ?>div[name="posts"]>div {
       display: flex;
     }
 
@@ -45,8 +47,8 @@
   </style>
 </head>
 
-<body>
-  <aside class="flex-container flex-column">
+<body id="body">
+  <div class="flex-container flex-column aside">
     <div class="flex-container flex-column profile">
       <div class="flex-container flex-center-all">
         <img class="shinidev-image" src="<?= base_url() ?>assets/Shinidev.jpg" alt="My cartoon image">
@@ -75,7 +77,7 @@
         </div>
       </div>
     </div>
-  </aside>
+  </div>
   <div class="content flex-container flex-column">
     <?= $content ?? '' ?>
   </div>

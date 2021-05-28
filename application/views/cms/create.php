@@ -31,10 +31,10 @@
     <span class="span-button" id="markup-button">Markup Help</span>
 </div>
 <textarea name="blog-content" id="blog-content" required><?= $_SESSION['formdata']['content'] ?? '' ?></textarea>
-<div>
+<div class="error-box">
     <?php if ($hasError)
     { ?>
-        Post exists
+        <div class="error-msg">Post exists</div>
     <?php } ?>
 </div>
 <div class="flex-container flex-position-right">

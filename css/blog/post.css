@@ -1,0 +1,46 @@
+.meta-info {
+	display: flex;
+}
+
+div[name="title"] {
+	color: black;
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+div[name="preview"] {
+	font-size: 0.75rem;
+}
+
+div[name="content"] {
+	font-size: 0.78rem;
+}
+
+div[name="author"] {
+	font-size: 0.65rem;
+}
+
+div[name="created"] {
+	font-size: 0.65rem;
+	margin-left: 1em;
+}
+
+div[name="category"] {
+	font-size: 0.65rem;
+}
+
+div[name="content"] img {
+	min-width: 65%;
+	min-height: 65%;
+	max-height: 70vh;
+	max-width: 70vw;
+}
+
+@media (max-width: 800px) {
+	.meta-info {
+		flex-direction: column;
+	}
+	div[name="created"] {
+		margin-left: 0;
+	}
+}

@@ -10,7 +10,8 @@
     <link rel="icon" href="<?= base_url() ?>assets/Shinidev.jpg">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/variables.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/templates/blog_template.css">
-    <title>Shinidev</title>
+    <?= $styles ?? '' ?>
+    <title><?= $title ?? 'ShiniDev' ?></title>
     <style>
         .navbar>a[name="<?= $current_tag ?? 'non_existent' ?>"]>li {
             background-color: var(--header-button-hover-background-color);
@@ -33,19 +34,19 @@
                 <a name="home" href="<?= base_url() ?>">
                     <li>Home</li>
                 </a>
-                <a name="programming" href="<?= base_url() ?>blog/article/programming">
+                <a name="programming" href="<?= base_url() ?>blog/category/programming">
                     <li>Programming</li>
                 </a>
-                <a name="devlogs" href="<?= base_url() ?>blog/article/devlogs">
+                <a name="devlogs" href="<?= base_url() ?>blog/category/devlogs">
                     <li>Devlogs</li>
                 </a>
-                <a name="tips" href="<?= base_url() ?>blog/article/tips">
+                <a name="tips" href="<?= base_url() ?>blog/category/tips">
                     <li>Tips</li>
                 </a>
-                <a name="projects" href="<?= base_url() ?>blog/article/projects">
+                <a name="projects" href="<?= base_url() ?>blog/category/projects">
                     <li>Projects</li>
                 </a>
-                <a name="learnings" href="<?= base_url() ?>blog/article/learnings">
+                <a name="learnings" href="<?= base_url() ?>blog/category/learnings">
                     <li>Learnings</li>
                 </a>
                 <a name="about" href="<?= base_url() ?>blog/about/">
@@ -59,7 +60,7 @@
     </div>
     <div class="flex-container body">
         <div class="content" id="content">
-            <?= $content['text'] ?? 'Under construction' ?>
+            <?= $content ?? 'Under construction' ?>
         </div>
         <aside class="flex-container">
 
