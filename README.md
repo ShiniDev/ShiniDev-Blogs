@@ -5,16 +5,17 @@ Current Features<ol>
 </ol>
 Planned Features<ol>
   <li><s>Content Management of Blog Posts / CRUD</s> - Done</li>
-  <li>Clean display of blog posts in home page</li>
+  <li><s>Clean display of blog posts in home page</s> - Done</li>
   <li>Recent blog posts on sidebar</li>
-  <li>Group blog posts on specific tags</li>
-  <li>Images on blog posts</li>
+  <li><s>Group blog posts on specific tags</s> - Done</li>
+  <li><s>Images on blog posts</s></li>
 </ol>
 Plans<ol>
 	<li><s>Remove register feature, as this is a blog site</s> - Done</li>
 </ol>
 
 <h2>Latest Preview</h2>
+<img src="assets/previews/Screenshot_2021-05-28_17-57-49.png" width="50%" height="50%" alt="Home Page">
 <img src="assets/previews/pagination.png" width="50%" height="50%" alt="Pagination">
 <img src="assets/previews/Create Post.png" width="50%" height="50%" alt="Create Post">
 <img src="assets/previews/Preview.png" width="50%" height="50%" alt="Preview Post">
